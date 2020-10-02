@@ -155,9 +155,56 @@ fun main(args: Array<String>) {
     //println(isNullableString.toInt())  // 这样调用会报错 必须加问号
     println(isNullableString?.toInt())
 
+    // ?: 如果问号前面的表达式返回null 就使用冒号后面的值
+    val isNonNullString = cat1.mFood?.food?.name?.toString()?:"Default value"
+    // isNonNullString 的类型是 String 不可能是null
+    println("isNonNullString is ${isNonNullString}")
+
+    val doubleDefault = cat1.mFood?.food?.name?.toString()?:cat1.mFood?.food?.name?:"default'default"
+    println("doubleDefault is ${doubleDefault}") // 使用了两次:
 
 
+    val ifStatement = if (cat1 == null) { "Null" }else{ "NotNull"} // if 表达式
+    // if 描述语 --java/kotlin都有
+
+    val doNotBreakup = cat1 as? String ; // as? 安全的类型转换
+//    if (doNotBreakup == null) {
+//        throw Exception();
+//    } else {
+//
+//    }
+    doNotBreakup?.toInt(); // 为空的话 不执行 也不抛出错误 返回null
+    //doNotBreakup!!.toInt(); // 为空的话 抛出 kotlin的NPE 不是Java的NPE  kotlin.KotlinNullPointerException
+
+    try {
+        val npeException = doNotBreakup!! // Exception 发生在判断的地方 而不是调用的地方 Java做不到
+        npeException.toInt();
+    } catch(ex: kotlin.KotlinNullPointerException ) {
+        println(ex.stackTrace);
+    }
 
 
+    val nullableString:String? = null
+    var nonNulableString:String = "Hello World"
+    println( nullableString == nonNulableString)
+    // 虽然 nullableString 是null 但是没有报错 不会NPE
+
+    val nullableString1:String? = "John"
+    //printName(nullableString1); nonnull和nullable不是同个类型 ！
+    //printName(nullableString1!!) // !! 转换成nonnull 否则抛出异常
+
+//    if (nullableString1 != null) {
+//        val copy = nullableString1; // 避免在多线程环境修改了nullableString1的指向
+//        printName(copy);
+//    }
+
+    // safe operator  it只能在{}有效  let接受lambda作为参数 lambda的参数是调用let的对象
+    // let 界定范围的函数
+    nullableString1?.let({printName(it)}) // 上面等同 如果是 mutable variable 只能用it
+    nonNulableString.let({printName(it)}); // 如果是Immutable variable 可以是变量名字或者it
 }
 
+fun printName(name: String)
+{
+    println("name is ${name}")
+}
