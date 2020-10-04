@@ -1,4 +1,6 @@
 import Animal
+import com.hozon.MyNewPackage.DataClass
+import com.hozon.MyNewPackage.PackageClass2
 
 fun myFun(args: Array<String>) {
     println("My Function Called");
@@ -202,6 +204,17 @@ fun main(args: Array<String>) {
     // let 界定范围的函数
     nullableString1?.let({printName(it)}) // 上面等同 如果是 mutable variable 只能用it
     nonNulableString.let({printName(it)}); // 如果是Immutable variable 可以是变量名字或者it
+
+    /////////////
+
+    var dataClassInstance = DataClass("Hello", 11);
+    println("DataClass = ${dataClassInstance}")
+
+
+    PackageClass2("Ho", 123)
+
+
+
 }
 
 fun printName(name: String)
