@@ -229,9 +229,38 @@ fun main(args: Array<String>) {
     //PackageClass().defaultArgsValue(null, 13) //  位置参数  因为参数类型不是Stirng? 不能传入null
     PackageClass().defaultArgsValue( temp1 = 13) // 命名参数  如果参数的名字不存在，会提示错误
 
+    println("不定长度参数 ")
+    //printNames(dataClassInstance, copyOfDataClass);
+
+    // public inline fun <reified @PureReifiable T> arrayOf(vararg elements: T): Array<T>
+    //printNames(arrayOf(dataClassInstance, copyOfDataClass))// 不匹配 形参是DataClass 实参是Array<DataClass>
+    printNames(*arrayOf(dataClassInstance, copyOfDataClass)); // 解剖运算符 *
+
+    printIdNames(dataClassInstance, copyOfDataClass, id = 2);
 }
+
 
 fun printName(name: String)
 {
-    println("name is ${name}")
+    val outerName:String = "local use outer function variable"
+    fun localFun(n:String) { // 内部函数可以使用 外部函数的局部变量
+        println("${outerName} , name is ${n}")
+    }
+    localFun(name);
+}
+
+
+// 一个函数只能有一个vararg参数
+internal fun printNames(vararg dcs:DataClass)
+{
+    for (dc in dcs)
+    {
+        println(dc);
+    }
+}
+
+// vararg 不是在参数列表最后一个，其后的参数都要用命令参数  集合函数大部分使用vararg参数 比如arrayof()
+internal fun printIdNames(vararg dcs:DataClass, id:Int)
+{
+    println("id = ${id}")
 }
