@@ -1,9 +1,17 @@
-import Animal
 import com.hozon.MyNewPackage.DataClass
+import com.hozon.MyNewPackage.PackageClass
 import com.hozon.MyNewPackage.PackageClass2
 
+// 没有namespace控制??
+val GREETING_CONSTANT = "hello world" // static final String
+
+// 编译期常量  可以用在注解 @Deprecated(SUBSYSTEM_DEPRECATED)
+// 原生类型和字符串 没有自定义的get和set 就可以加const
+const val SUBSYSTEM_DEPRECATED: String = "deprecated"
+
+
 fun myFun(args: Array<String>) {
-    println("My Function Called");
+    println("My Function Called ${GREETING_CONSTANT}");
 }
 
 
@@ -209,11 +217,17 @@ fun main(args: Array<String>) {
 
     var dataClassInstance = DataClass("Hello", 11);
     println("DataClass = ${dataClassInstance}")
+    // func copy(name:String = this.name, age:Int = this.age)
+    // = DataClass(name,age) ;
+    var copyOfDataClass = dataClassInstance.copy("Tom"); // 没有赋值的用原来实例的
+    println("DataClass.copy = ${copyOfDataClass}")
 
+    val packageClsObj = PackageClass2("Ho", 123)
+    println(packageClsObj.gender);
+    // println(packageClsObj.mIsMarried); // mIsMarried is private, get函数也是private
 
-    PackageClass2("Ho", 123)
-
-
+    //PackageClass().defaultArgsValue(null, 13) //  位置参数  因为参数类型不是Stirng? 不能传入null
+    PackageClass().defaultArgsValue( temp1 = 13) // 命名参数  如果参数的名字不存在，会提示错误
 
 }
 

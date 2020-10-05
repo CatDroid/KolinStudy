@@ -1,9 +1,27 @@
 package com.hozon.MyNewPackage
 
 data class DataClass(var name:String, val age:Int)
+
+    var grade:Int = 12 ; // 不会包含在自动生成的函数中 比如toString copy
+
+    //fun directCopy(name:String = this.name):DataClass = DataClass(this.name, this.age)
+
+
 /*
 
 加上 data 之后 自动生成多了很多的函数
+一个类只有属性/get和set 没有其他成员函数 可以使用数据类型 当然也可以增加属性和方法
+
+data 会自动生成 （不会包含类体中的成员属性）
+toString (可以重载)
+equal (可以重载)
+hashCode (可以重载)
+copy
+和 解剖函数component
+
+
+
+
 
 https://www.javadecompiler.online/
 
