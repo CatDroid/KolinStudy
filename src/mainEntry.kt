@@ -1,3 +1,4 @@
+import com.Fela.MyObject.MySingleton
 import com.hozon.MyNewPackage.DataClass
 import com.hozon.MyNewPackage.PackageClass
 import com.hozon.MyNewPackage.PackageClass2
@@ -248,6 +249,11 @@ fun main(args: Array<String>) {
 
     var iface = OneClass(12);
     println("interface non-abstract field ${iface.number2}" ); // 12*3 = 36
+
+
+    println("MySingleton called first ${MySingleton.getTag()}")
+    println("MySingleton ${MySingleton.getCopyRight()}")
+    println("MySingleton Class Base ${MySingleton.id} ")
 
 }
 
