@@ -1,6 +1,8 @@
 import com.hozon.MyNewPackage.DataClass
 import com.hozon.MyNewPackage.PackageClass
 import com.hozon.MyNewPackage.PackageClass2
+import com.hozon.MyNewPackage.upper3FirstAndLast3
+import com.hozon.MyNewPackage.lastOne
 
 // 没有namespace控制??
 val GREETING_CONSTANT = "hello world" // static final String
@@ -237,6 +239,11 @@ fun main(args: Array<String>) {
     printNames(*arrayOf(dataClassInstance, copyOfDataClass)); // 解剖运算符 *
 
     printIdNames(dataClassInstance, copyOfDataClass, id = 2);
+
+
+    val extensString:String = "Hello world"
+    println(extensString.upper3FirstAndLast3()) // 必须import函数 才能在这个文件扩展String的方法和属性
+    println(extensString.lastOne);
 }
 
 
