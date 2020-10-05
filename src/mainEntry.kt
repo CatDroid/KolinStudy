@@ -3,6 +3,7 @@ import com.hozon.MyNewPackage.PackageClass
 import com.hozon.MyNewPackage.PackageClass2
 import com.hozon.MyNewPackage.upper3FirstAndLast3
 import com.hozon.MyNewPackage.lastOne
+import com.may.MyInterface.OneClass
 
 // 没有namespace控制??
 val GREETING_CONSTANT = "hello world" // static final String
@@ -244,6 +245,10 @@ fun main(args: Array<String>) {
     val extensString:String = "Hello world"
     println(extensString.upper3FirstAndLast3()) // 必须import函数 才能在这个文件扩展String的方法和属性
     println(extensString.lastOne);
+
+    var iface = OneClass(12);
+    println("interface non-abstract field ${iface.number2}" ); // 12*3 = 36
+
 }
 
 
