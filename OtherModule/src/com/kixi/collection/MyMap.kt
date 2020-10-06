@@ -1,6 +1,6 @@
 package com.kixi.collection
 
-data class Car(val color:String, val model:String, val year:Int)
+private data class Car(val color:String, val model:String, val year:Int)
 
 // Deconstruction 解构
 // Destruct 析构
