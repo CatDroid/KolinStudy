@@ -2,8 +2,12 @@ package com.coco.CallKotlinFromJava.java;
 
 //import com.coco.CallKotlinFromJava.kotlin.SchoolKt;
 import com.coco.CallKotlinFromJava.kotlin.MySchool;
+import com.coco.CallKotlinFromJava.kotlin.SingleOne;
 import com.coco.CallKotlinFromJava.kotlin.StaticSchool;
 
+
+import java.io.IOException;
+import java.security.Permission;
 
 import static java.lang.System.out;
 
@@ -37,5 +41,48 @@ public class MainEntry {
         out.println("call kotlin top-level const " +
                 com.coco.CallKotlinFromJava.kotlin.StaticSchool.SCHOOL_DEPRECATED);
 
+        out.println("call kotlin companion function " +
+                MySchool.Companion.kotlinStaticMethod("java") );
+
+        out.println("call kotlin companion function " +
+                MySchool.Companion.kotlinStaticMethod_JVMStatic("java") );
+
+        out.println("call kotlin companion function " +
+                MySchool.kotlinStaticMethod_JVMStatic("java") );
+
+        // 调用kotlin的单例 需要使用 INSTANCE
+        SingleOne.INSTANCE.doSomeThing();
+
+        // 访问Companion object的属性
+        MySchool.Companion.getIS_KOTLIN();
+
+        // const的 Companion object的属性 没有set和get 也不需要JvmField 就可以直接访问
+        out.println(MySchool.IS_JAVA);
+
+        try {
+            SingleOne.INSTANCE.nonNullableArg(null);
+        } catch (IllegalArgumentException ex) {
+            ex.printStackTrace();
+        }
+
+
+        try {
+            SingleOne.INSTANCE.throwIoException();
+        } catch (IOException ex){
+            /*
+                              Throwable
+                                 ｜
+                              Exception
+                     ｜                    ｜
+                 RuntimeException       IOException
+                     ｜
+                IllegalArgumentException
+             */
+            ex.printStackTrace();
+        }
+
+
+
+        SingleOne.INSTANCE.defaultArg("hello");
     }
 }

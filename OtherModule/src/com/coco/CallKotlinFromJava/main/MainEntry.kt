@@ -11,4 +11,8 @@ fun main(args: Array<String>) {
     val v = MySchool("kotlin", false, 2010)
 
 
+    val c = Object::class
+    val j = v.javaClass
+
+
 }
