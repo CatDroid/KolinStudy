@@ -15,3 +15,12 @@ fun String.print() = println(this)
 // -- > fun print(String arg1) !
 // -- > class StaticSchool { static fun print(String arg1) ! }
 // 所以在java中 需要把 receiver 作为第一个参数
+
+// 不同的包路径
+// kotlin --- import com.coco.CallKotlinFromJava.kotlin.SCHOOL_DEPRECATED
+// java   --- import com.coco.CallKotlinFromJava.kotlin.StaticSchool.SCHOOL_DEPRECATED
+
+const val SCHOOL_DEPRECATED: String = "deprecated"
+
+
+class MySchool(val name:String, var isPublic:Boolean, @JvmField val year:Int)

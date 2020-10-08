@@ -6,7 +6,7 @@ import com.hozon.MyNewPackage.upper3FirstAndLast3
 import com.hozon.MyNewPackage.lastOne
 import com.may.MyInterface.OneClass
 
-// 没有namespace控制??
+// 不同的包路径 需要import
 val GREETING_CONSTANT = "hello world" // static final String
 
 // 编译期常量  可以用在注解 @Deprecated(SUBSYSTEM_DEPRECATED)
