@@ -18,8 +18,9 @@ through the Constant Conditions & Exceptions and @Nullable problem inspections.
 public class Cat extends Animal {
 
     private boolean isMale = false ;
-    private String text  ;
-    private String nonNullText = "123";
+    private String nullableText;
+    private String nonNullText = "default";
+    private String nullOrNonNullText ;
 
     public Cat(String name, boolean isMan)
     {
@@ -47,13 +48,13 @@ public class Cat extends Animal {
     }
 
 
-    public String getText() {
-        return text;
+    public @Nullable String getNullableText() {
+        return nullableText;
     }
 
 
-    public void setText(String name) {
-        this.text = name;
+    public void setNullableText(String name) {
+        this.nullableText = name;
     }
 
     public @NotNull String getNonNullText() {
@@ -62,6 +63,59 @@ public class Cat extends Animal {
 
     public void setNonNullText(@NotNull String nonNullText) {
         this.nonNullText = nonNullText;
+    }
+
+    public String getNullOrNonNullText() {
+        return nullOrNonNullText;
+    }
+
+    public void setNullOrNonNullText(String nullOrNonNullText) {
+        this.nullOrNonNullText = nullOrNonNullText;
+    }
+
+    // 不定参数长度数组 但是类型都是String 跟kotlin的vararg一样
+    public void variableNumMethod(String... args)
+    {
+        for (String string:args){
+            System.out.println(string);
+        }
+    }
+
+    public @NotNull Object getObject()
+    {
+        return new Object();
+    }
+
+    public static void javaStaticMethod()
+    {
+        System.out.println("call javaStaticMethod ");
+    }
+
+    public void demoSam() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("This is Runnable in a thread");
+            }
+        }).start();
+    }
+
+    public void demoSam2() {
+        new Thread( () -> System.out.println("This is Runnable in a thread") ).start();
+    }
+
+    public void demoSam3(Runnable r) {
+        new Thread( r ).start();
+    }
+
+    @FunctionalInterface
+    static public interface CallMeWithArgs{
+        boolean CallMe(String arg1, int arg2);
+    }
+
+    public void demoSam4(CallMeWithArgs r) {
+        boolean result = r.CallMe("FunctionalInterface ", 2);
+        System.out.println("call FunctionalInterface result = " + result);
     }
 
 

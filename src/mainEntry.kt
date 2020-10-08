@@ -238,7 +238,7 @@ fun main(args: Array<String>) {
 
     // public inline fun <reified @PureReifiable T> arrayOf(vararg elements: T): Array<T>
     //printNames(arrayOf(dataClassInstance, copyOfDataClass))// 不匹配 形参是DataClass 实参是Array<DataClass>
-    printNames(*arrayOf(dataClassInstance, copyOfDataClass)); // 解剖运算符 *
+    printNames(*arrayOf(dataClassInstance, copyOfDataClass)); // 扩展运算符/Spread运算符 *
 
     printIdNames(dataClassInstance, copyOfDataClass, id = 2);
 
