@@ -71,7 +71,7 @@ fun main(args: Array<String>) {
 
     // Lambda内不允许使用return语句。 如果要从lambda返回，则应使用标签
     val fullLambda : (Int,Double)->Boolean = {
-        number:Int,number2:Double -> Boolean
+            number:Int,number2:Double  -> Boolean // lambda表达式中函数参数不能用() 没有参数就留空
             if (number.toDouble() == number2) {
                 //return true ;
                 true ;
@@ -82,6 +82,11 @@ fun main(args: Array<String>) {
     // 调用内联函数传递的lambda可以使用return+标记符 默认从内联函数返回
     println("非内联的Lambda表达式中不能使用return ${fullLambda(1,2.2)}")
 
+    val noArguReturnLambda : () -> Unit  = {
+          -> println("没有参数和返回值的lambda")
+    }
+
+    println("${noArguReturnLambda()}") // 打印是kotlin.Unit
 
     val employees = listOf(Employee("aaa",1995),
         Employee("bbb", 1987),
