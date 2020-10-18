@@ -66,8 +66,22 @@ fun main(args: Array<String>) {
         println("number is $number")
         number % 2 == 1
     }
-
     println(isOddNumber.invoke(100))
+
+
+    // Lambda内不允许使用return语句。 如果要从lambda返回，则应使用标签
+    val fullLambda : (Int,Double)->Boolean = {
+        number:Int,number2:Double -> Boolean
+            if (number.toDouble() == number2) {
+                //return true ;
+                true ;
+            } else  {
+                false ;
+            }//  在非内联的Lambda表达式中不能使用 return
+    }// https://www.jianshu.com/p/3589a2d00625
+    // 调用内联函数传递的lambda可以使用return+标记符 默认从内联函数返回
+    println("非内联的Lambda表达式中不能使用return ${fullLambda(1,2.2)}")
+
 
     val employees = listOf(Employee("aaa",1995),
         Employee("bbb", 1987),
